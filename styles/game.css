@@ -1,0 +1,481 @@
+/* The Cold Case of Eleanor Ash - Game Styles */
+
+/* CSS Variables for Noir Theme */
+:root {
+    --noir-black: #1a1a1a;
+    --noir-dark-gray: #2d2d2d;
+    --noir-gray: #4a4a4a;
+    --noir-light-gray: #8a8a8a;
+    --noir-cream: #f5f5dc;
+    --noir-amber: #ffb347;
+    --noir-blue: #4682b4;
+    --noir-red: #8b0000;
+    --noir-green: #228b22;
+    
+    --typewriter-font: 'Special Elite', monospace;
+    --ui-font: 'Inter', sans-serif;
+    
+    --transition-smooth: all 0.3s ease;
+    --shadow-noir: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--ui-font);
+    background: linear-gradient(135deg, var(--noir-black) 0%, var(--noir-dark-gray) 100%);
+    color: var(--noir-cream);
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Game Container */
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Screen Management */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    opacity: 0;
+}
+
+.screen.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Title Screen */
+#title-screen {
+    background: 
+        radial-gradient(circle at 30% 70%, rgba(255, 179, 71, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, var(--noir-black) 0%, var(--noir-dark-gray) 100%);
+    flex-direction: column;
+}
+
+.title-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: var(--shadow-noir);
+    border: 1px solid var(--noir-gray);
+}
+
+.game-title {
+    font-family: var(--typewriter-font);
+    font-size: 3.5rem;
+    color: var(--noir-amber);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.title-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: var(--noir-light-gray);
+}
+
+.title-text p {
+    margin-bottom: 0.8rem;
+}
+
+.title-text .emphasis {
+    color: var(--noir-amber);
+    font-style: italic;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Detective Button Styling */
+.detective-button {
+    background: linear-gradient(145deg, var(--noir-dark-gray), var(--noir-gray));
+    color: var(--noir-cream);
+    border: 2px solid var(--noir-amber);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-family: var(--typewriter-font);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.detective-button:hover {
+    background: linear-gradient(145deg, var(--noir-gray), var(--noir-light-gray));
+    border-color: var(--noir-cream);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+}
+
+.detective-button:active {
+    transform: translateY(0);
+}
+
+/* Game Screen Layout */
+#game-screen {
+    display: grid;
+    grid-template-columns: 300px 1fr 250px;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    max-width: 1600px;
+}
+
+/* Panels */
+.panel {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--noir-gray);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-noir);
+}
+
+#narrative-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#narrative-content {
+    text-align: center;
+}
+
+#narrative-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--noir-light-gray);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* Game Canvas Container */
+#game-canvas-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--noir-amber);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: var(--shadow-noir);
+}
+
+#game-canvas {
+    border: 1px solid var(--noir-gray);
+    border-radius: 5px;
+    background: var(--noir-black);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Game UI Overlay */
+#game-ui {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+}
+
+#level-info {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--noir-gray);
+    pointer-events: auto;
+}
+
+#current-level {
+    color: var(--noir-amber);
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+#level-title {
+    color: var(--noir-light-gray);
+    font-style: italic;
+}
+
+#game-controls {
+    display: flex;
+    gap: 0.5rem;
+    pointer-events: auto;
+}
+
+.ui-button {
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--noir-cream);
+    border: 1px solid var(--noir-gray);
+    padding: 0.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+
+.ui-button:hover {
+    background: var(--noir-dark-gray);
+    border-color: var(--noir-amber);
+}
+
+/* Evidence Panel */
+#evidence-panel h3 {
+    color: var(--noir-amber);
+    margin-bottom: 1rem;
+    font-family: var(--typewriter-font);
+    text-align: center;
+    border-bottom: 1px solid var(--noir-gray);
+    padding-bottom: 0.5rem;
+}
+
+.evidence-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 179, 71, 0.1);
+    border: 1px solid var(--noir-amber);
+    border-radius: 5px;
+    transition: var(--transition-smooth);
+}
+
+.evidence-icon {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+}
+
+.evidence-text {
+    color: var(--noir-cream);
+    font-weight: 500;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--noir-dark-gray);
+    border: 2px solid var(--noir-amber);
+    border-radius: 10px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--shadow-noir);
+}
+
+.modal-content h3 {
+    color: var(--noir-amber);
+    font-family: var(--typewriter-font);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.setting-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.setting-group label {
+    display: flex;
+    align-items: center;
+    color: var(--noir-light-gray);
+    cursor: pointer;
+}
+
+.setting-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+}
+
+.setting-group input[type="range"] {
+    margin-left: 0.5rem;
+    flex: 1;
+}
+
+/* Final Screen */
+#final-screen {
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(34, 139, 34, 0.2) 0%, transparent 70%),
+        linear-gradient(135deg, var(--noir-black) 0%, var(--noir-dark-gray) 100%);
+    flex-direction: column;
+}
+
+.final-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: var(--shadow-noir);
+    border: 2px solid var(--noir-green);
+}
+
+.final-content h2 {
+    font-family: var(--typewriter-font);
+    font-size: 3rem;
+    color: var(--noir-green);
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.evidence-summary {
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.evidence-check {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--noir-light-gray);
+    padding-left: 1rem;
+}
+
+.final-text {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--noir-cream);
+    font-weight: 600;
+}
+
+.final-action {
+    font-size: 1.2rem;
+    color: var(--noir-green);
+    font-family: var(--typewriter-font);
+    margin: 2rem 0;
+    letter-spacing: 2px;
+}
+
+/* Accessibility Features */
+.high-contrast {
+    --noir-black: #000000;
+    --noir-cream: #ffffff;
+    --noir-amber: #ffff00;
+    --noir-gray: #808080;
+}
+
+.reduced-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    #game-screen {
+        grid-template-columns: 250px 1fr 200px;
+    }
+    
+    .game-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 900px) {
+    #game-screen {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+    
+    .panel {
+        padding: 1rem;
+    }
+    
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .title-content {
+        padding: 1.5rem;
+    }
+}
+
+/* Canvas Cursor States */
+#game-canvas {
+    cursor: default;
+}
+
+#game-canvas.can-move {
+    cursor: pointer;
+}
+
+#game-canvas.moving {
+    cursor: grabbing;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Typewriter Effect */
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--noir-amber);
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--noir-amber); }
+}

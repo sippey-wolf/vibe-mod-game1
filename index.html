@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cold Case of Eleanor Ash</title>
+    <link rel="stylesheet" href="styles/game.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Title Screen -->
+        <div id="title-screen" class="screen active">
+            <div class="title-content">
+                <h1 class="game-title">The Cold Case of Eleanor Ash</h1>
+                <div class="title-text">
+                    <p>Twelve years ago, Eleanor Ash was found dead in her apartment.</p>
+                    <p>The official cause: suicide.</p>
+                    <p>You were a rookie then—barely on the case, quickly reassigned.</p>
+                    <p>Last week, an envelope arrived. No return address.</p>
+                    <p>Inside: a photo fragment, and a single line in shaky ink:</p>
+                    <p class="emphasis">"You missed something."</p>
+                    <p>Now you're back where it all started.</p>
+                </div>
+                <button id="begin-investigation" class="detective-button">Begin Investigation</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <!-- Narrative Panel -->
+            <div id="narrative-panel" class="panel">
+                <div id="narrative-content">
+                    <p id="narrative-text"></p>
+                    <button id="continue-button" class="detective-button" style="display: none;">Continue</button>
+                </div>
+            </div>
+
+            <!-- Game Canvas -->
+            <div id="game-canvas-container">
+                <canvas id="game-canvas" width="800" height="600"></canvas>
+                <div id="game-ui">
+                    <div id="level-info">
+                        <span id="current-level">Level 1</span>
+                        <span id="level-title">The Torn Photograph</span>
+                    </div>
+                    <div id="game-controls">
+                        <button id="hint-button" class="ui-button">💡 Hint</button>
+                        <button id="reset-button" class="ui-button">🔄 Reset</button>
+                        <button id="settings-button" class="ui-button">⚙️ Settings</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evidence Tracker -->
+            <div id="evidence-panel" class="panel">
+                <h3>Evidence Collected</h3>
+                <div id="evidence-list">
+                    <div class="evidence-item" id="evidence-photo" style="display: none;">
+                        <div class="evidence-icon">📷</div>
+                        <div class="evidence-text">Reconstructed Photo</div>
+                    </div>
+                    <div class="evidence-item" id="evidence-letter" style="display: none;">
+                        <div class="evidence-icon">✉️</div>
+                        <div class="evidence-text">Threatening Letter</div>
+                    </div>
+                    <div class="evidence-item" id="evidence-scene" style="display: none;">
+                        <div class="evidence-icon">🔍</div>
+                        <div class="evidence-text">Crime Scene Truth</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3>Settings</h3>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="high-contrast"> High Contrast Mode
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="reduced-motion"> Reduce Motion
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        Audio Volume: <input type="range" id="volume-slider" min="0" max="100" value="50">
+                    </label>
+                </div>
+                <button id="close-settings" class="detective-button">Close</button>
+            </div>
+        </div>
+
+        <!-- Victory Modal -->
+        <div id="victory-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3 id="victory-title">Evidence Discovered</h3>
+                <div id="victory-content"></div>
+                <button id="continue-investigation" class="detective-button">Continue Investigation</button>
+            </div>
+        </div>
+
+        <!-- Final Reveal Screen -->
+        <div id="final-screen" class="screen">
+            <div class="final-content">
+                <h2>CASE RECONSTRUCTED</h2>
+                <div class="evidence-summary">
+                    <div class="evidence-check">✅ Photograph: Eleanor was not alone.</div>
+                    <div class="evidence-check">✅ Letter: She was afraid of someone named "D."</div>
+                    <div class="evidence-check">✅ Scene: The suicide was staged.</div>
+                </div>
+                <p class="final-text">This was never a suicide.</p>
+                <p class="final-text">This was erasure.</p>
+                <p class="final-action">FORWARDING TO DISTRICT ATTORNEY'S OFFICE</p>
+                <button id="end-game" class="detective-button">Case Closed</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Scripts -->
+    <script src="src/engine/GameEngine.js"></script>
+    <script src="src/engine/SokobanMechanics.js"></script>
+    <script src="src/engine/AssetManager.js"></script>
+    <script src="src/engine/InputHandler.js"></script>
+    <script src="src/levels/Level1.js"></script>
+    <script src="src/narrative/StoryManager.js"></script>
+    <script src="src/ui/DetectiveUI.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
